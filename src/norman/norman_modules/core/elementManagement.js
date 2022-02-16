@@ -9,6 +9,11 @@ export function get(selector, all = true)  {
 	return els.length !== 0 ? els : false
 }
 
+// Alias for get(selector, true)
+export function getAll(selector) {
+	return get(selector, true)
+}
+
 export function exists(input) {
 	// Check element exists
 	if (typeof input === "string") {
@@ -37,6 +42,7 @@ export function remove(input) {
 
 export const elementManagement = {
 	get,
+	getAll,
 	exists,
 	add,
 	remove,
