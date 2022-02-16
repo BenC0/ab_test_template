@@ -9,8 +9,8 @@ export function get(selector, all = true)  {
 	return els.length !== 0 ? els : false
 }
 
-// Alias for get(selector, true)
 export function getAll(selector) {
+	// Alias for get(selector, true)
 	return get(selector, true)
 }
 
@@ -22,12 +22,26 @@ export function exists(input) {
 	return !!input
 }
 
-export function add(html, target, method) {
-	// add element to page
+export function createVirtualElement(html) {
+	// Creates a virtual element for use in other functions
     let template = document.createElement('template');
     html = html.trim()
     template.innerHTML = html;
-    let tempEl = template.content.firstChild;
+    let virtEl = template.content.firstChild;
+	return virtEl
+}
+
+export function replace(target, html) {
+	// Replace pre-existing element
+	let tempEl = createVirtualElement(html)
+	let target = document.querySelector(input)
+	target.parentNode.replaceChild(tempEl, target)
+	return tempEl
+}
+
+export function add(html, method, target) {
+	// add element to page
+	let tempEl = createVirtualElement(html)
 	let targetEl = document.querySelector(target)
 	return targetEl.insertAdjacentElement(method, tempEl)
 }
