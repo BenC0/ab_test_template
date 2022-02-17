@@ -7,12 +7,12 @@ import * as test_config from "../../config.js"
  */
 export default function registerTest(variant, extraDetails = {}) {
 	testID = test_config.id
-	test_config[variant] = variant
 	for (const property in extraDetails) {
 		test_config[property] = extraDetails[property]
 	}
 	window.norman = window.norman || []
 	window.norman[testID] = {
+		variant,
 		logs: [],
 		test_config,
 	}
