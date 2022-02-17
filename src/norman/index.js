@@ -15,6 +15,11 @@ import onMouseLeave from './norman_modules/utils/onMouseLeave.js';
 import watchForChange from './norman_modules/utils/watchForChange.js';
 import getHighestZIndex from './norman_modules/utils/getHighestZIndex.js';
 
+/**
+ * Initialises Norman & registers tests
+ * @param {Object} Variant contains name, css, actions, and conditions 
+ * @returns {Object} Test ID, test details and run function to poll for test & variant conditions before running variant actions
+ */
 export function init(Variant) {
 	let test = registerTest(Variant.name, {
 		css: Variant.css,
