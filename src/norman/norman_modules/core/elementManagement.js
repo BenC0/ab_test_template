@@ -1,5 +1,10 @@
+/**
+ * Get specified element(s) from the DOM
+ * @param {string} selector Element selector 
+ * @param {boolean} [all=true] true returns all matches, false returns the first match. 
+ * @returns {array} Array of Nodes or false if no matches found
+ */
 export function get(selector, all = true)  {
-	// Get element
 	let els = []
 	if (all && typeof selector === "string" && selector.replace(/ /g, '') !== "") {
 		els = [...document.querySelectorAll(selector)]
@@ -9,21 +14,32 @@ export function get(selector, all = true)  {
 	return els.length !== 0 ? els : false
 }
 
+/**
+ * Alias for get(selector, all) function with all set to true
+ * @param {string} selector Element selector  
+ * @returns {array} Array of Nodes or false if no matches found
+ */
 export function getAll(selector) {
-	// Alias for get(selector, true)
 	return get(selector, true)
 }
 
-export function exists(input) {
+/**
+ * Checks if element exists
+ * @param {string|Node} target 
+ * @returns {boolean} Returns true if exists, false if not.
+ */
+export function exists(target) {
 	// Check element exists
-	if (typeof input === "string") {
-		return !!document.querySelector(input)
-	}
-	return !!input
+	target = typeof target === "string" ?  document.querySelector(target) : target
+	return !!target
 }
 
-export function createVirtualElement(html) {
-	// Creates a virtual element for use in other functions
+/**
+ * Creates a temporary element in the DOM (not visible to user)
+ * @param {string} html string of HTML 
+ * @returns {HTMLElement|Element} The HTML string as an Element
+ */
+export function createTempElement(html) {
     let template = document.createElement('template');
     html = html.trim()
     template.innerHTML = html;
@@ -31,27 +47,47 @@ export function createVirtualElement(html) {
 	return virtEl
 }
 
+/**
+ * Replaces a specified HTML element with a specified HTML string
+ * @param {string|HTMLElement} target The selector/element to be replaced 
+ * @param {string} html string of HTML 
+ * @returns {HTMLElement|Element} The new element
+ */
 export function replace(target, html) {
-	// Replace pre-existing element
-	let tempEl = createVirtualElement(html)
-	let target = document.querySelector(input)
+	let tempEl = createTempElement(html)
+	target = typeof target === "string" ?  document.querySelector(target) : target
 	target.parentNode.replaceChild(tempEl, target)
 	return tempEl
 }
 
-export function add(html, method, target) {
+/**
+ * 
+ * @param {string} html string of HTML 
+ * @param {string} [method=beforeEnd] Method of inserting content Possible Values: ["beforeBegin", "afterBegin", "beforeEnd", "afterEnd"] 
+ * @param {string|HTMLElement} target The selector/element to insert the element adjacent to.
+ * @returns {HTMLElement|Element} The new element
+ */
+export function add(html, method = "beforeEnd", target = "body") {
 	// add element to page
-	let tempEl = createVirtualElement(html)
-	let targetEl = document.querySelector(target)
-	return targetEl.insertAdjacentElement(method, tempEl)
+	let tempEl = createTempElement(html)
+	target = typeof target === "string" ?  document.querySelector(target) : target
+	return target.insertAdjacentElement(method, tempEl)
 }
 
-export function remove(input) {
+/**
+ * Removes a specified element from the page
+ * @param {string|HTMLElement} element The selector/element to be removed
+ * @returns {boolean} Returns true if element successfully removed, false if not.
+ */
+export function remove(element) {
 	// Remove element
-	if (typeof input === "string") {
-		input = document.querySelector(input)
+	element = typeof element === "string" ?  document.querySelector(element) : element
+	try {
+		element.remove()
+		return true
+	} catch (error) {
+		return false
 	}
-	input.remove()
 }
 
 export const elementManagement = {
