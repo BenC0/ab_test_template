@@ -29,7 +29,6 @@ export function getAll(selector) {
  * @returns {boolean} Returns true if exists, false if not.
  */
 export function exists(target) {
-	// Check element exists
 	target = typeof target === "string" ?  document.querySelector(target) : target
 	return !!target
 }
@@ -68,7 +67,6 @@ export function replace(target, html) {
  * @returns {HTMLElement|Element} The new element
  */
 export function add(html, method = "beforeEnd", target = "body") {
-	// add element to page
 	let tempEl = createTempElement(html)
 	target = typeof target === "string" ?  document.querySelector(target) : target
 	return target.insertAdjacentElement(method, tempEl)
@@ -80,7 +78,6 @@ export function add(html, method = "beforeEnd", target = "body") {
  * @returns {boolean} Returns true if element successfully removed, false if not.
  */
 export function remove(element) {
-	// Remove element
 	element = typeof element === "string" ?  document.querySelector(element) : element
 	try {
 		element.remove()
