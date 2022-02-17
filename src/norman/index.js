@@ -15,23 +15,47 @@ import onMouseLeave from './norman_modules/utils/onMouseLeave.js';
 import watchForChange from './norman_modules/utils/watchForChange.js';
 import getHighestZIndex from './norman_modules/utils/getHighestZIndex.js';
 
+export function init(Variant) {
+	let test = registerTest(Variant.name, {
+		css: Variant.css,
+		actions: Variant.actions,
+		conditions: Variant.conditions,
+	})
+	let id = config.id
+	let run = () => {
+		poll(config.conditions, _ => {
+			poll(Variant.conditions, Variant.actions)
+		})
+	}
+	return {
+		id,
+		test,
+		run,
+	}
+}
+
+export const core = {
+	log,
+	poll,
+	track,
+	cookie,
+	registerTest,
+	elementManagement,
+}
+
+export const utils = {
+	debounce,
+	isInViewport,
+	onMouseLeave,
+	watchForChange,
+	getHighestZIndex,
+}
+
 export const norman = {
+	init,
+	core,
+	utils,
 	config,
-	core: {
-		log,
-		poll,
-		track,
-		cookie,
-		registerTest,
-		elementManagement,
-	},
-	utils: {
-		debounce,
-		isInViewport,
-		onMouseLeave,
-		watchForChange,
-		getHighestZIndex,
-	},
 }
 
 export default norman 
