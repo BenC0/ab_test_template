@@ -1,4 +1,4 @@
-import * as test_config from "../../../ab_test_config"
+import * as test_config from "../../config.js"
 import log from "../core/log"
 /**
  * Function to push events to dataLayer

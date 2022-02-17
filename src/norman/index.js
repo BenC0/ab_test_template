@@ -1,3 +1,5 @@
+// Config
+import * as config from "./config.js"
 // Core Modules
 import log from './norman_modules/core/log.js';
 import poll from './norman_modules/core/pollFunction.js';
@@ -17,6 +19,7 @@ export {
 	poll,
 	track,
 	cookie,
+	config,
 	debounce,
 	registerTest,
 	isInViewport,
