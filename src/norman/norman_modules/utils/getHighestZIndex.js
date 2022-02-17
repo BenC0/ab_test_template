@@ -1,3 +1,8 @@
+/**
+ * Returns the highest CSS Z-Index of all elements matching a specified selector
+ * @param {string} [elem=*] CSS selector of elements to compare Z-Index of
+ * @returns {integer} The highest Z-Index
+ */
 export default function getHighestZIndex(elem = "*") {
   var elems = document.getElementsByTagName(elem);
   var highest = Number.MIN_SAFE_INTEGER || -(Math.pow(2, 53) - 1);
