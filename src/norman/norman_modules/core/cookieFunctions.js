@@ -1,13 +1,21 @@
-/* Function to set a cookie. Default expiration date is 30 days. */
+/**
+ * Function to set a cookie.
+ * @param {string} cname name of cookie
+ * @param {string} cvalue Value of cookie
+ * @param {int|float} [exdays=30] Expiration time in days
+ */
 export function set(cname, cvalue, exdays = 30) {
 	let d = new Date();
-	/* Change this value to change the expiration date. The value is an integer of days */
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	let expires = "expires="+ d.toUTCString();
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-/* function to retrieve a cookie value */
+/**
+ * Function to retrieve a cookie value
+ * @param {string} [cname=false] name of cookie 
+ * @returns {string} Cookie value, empty string if cname = false
+ */
 export function get(cname = false) {
 	if (cname != false) {
 		let name = cname + "=";
@@ -26,11 +34,13 @@ export function get(cname = false) {
 	return "";
 }
 
-/* Function to check a cookie exists */
+/**
+ * Function to check a cookie exists
+ * @param {string} [cookieName=false] Name of the cookie to check for
+ * @returns {boolean} True if cookie exists and value is not an empty string, false otherwise
+ */
 export function exists(cookieName = false) {
-	/* If cookieName is not false and exists */
 	if (!!cookieName) {
-		/* Return result of getCookie not equal to an empty string */
 		return getCookie(cookieName) !== "";
 	}
 	return false
