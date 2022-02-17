@@ -3,8 +3,7 @@ export default {
     "tracking": {
         "google_analytics": {
             "dimension": false
-        },
-        "hotjar": false
+        }
     },
     "conditions": []
 }
