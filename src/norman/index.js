@@ -29,7 +29,10 @@ export function init(Variant) {
 	let id = config.id
 	let run = () => {
 		poll(config.conditions, _ => {
-			poll(Variant.conditions, Variant.actions)
+			poll(Variant.conditions, _ => {
+				document.body.classList.add(`${id}_loaded`)
+				Variant.actions()
+			})
 		})
 	}
 	return {
