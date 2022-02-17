@@ -4,6 +4,7 @@ import poll from './norman_modules/core/pollFunction.js';
 import cookie from './norman_modules/core/cookieFunctions.js';
 import registerTest from './norman_modules/core/registerTest.js';
 import elementManagement from './norman_modules/core/elementManagement.js';
+import track from './norman_modules/core/tracking.js';
 // Util Modules
 import debounce from './norman_modules/utils/debounce.js';
 import isInViewport from './norman_modules/utils/isInViewport.js';
@@ -14,6 +15,7 @@ import getHighestZIndex from './norman_modules/utils/getHighestZIndex.js';
 export {
 	log,
 	poll,
+	track,
 	cookie,
 	debounce,
 	registerTest,
