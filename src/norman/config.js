@@ -1,7 +1,7 @@
 import log from "./norman_modules/core/log.js"
 
 export default {
-    "id": "PAH000",
+    "id": "pah000",
     "tracking": {
         "google_analytics": {
             "dimension": false
