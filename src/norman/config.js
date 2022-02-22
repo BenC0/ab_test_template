@@ -1,6 +1,6 @@
 import log from "./norman_modules/core/log.js"
 
-export default {
+export const config = {
     "id": "pah000",
     "tracking": {
         "google_analytics": {
@@ -16,3 +16,5 @@ export default {
         return result
     }
 }
+
+export default config

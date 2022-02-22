@@ -1,10 +1,10 @@
-import * as test_config from "../../config.js"
+import config from "../../config.js"
 /**
  * Logs a message to the specified test in the window.norman object
  * @param {*} msg The message to be logged, can be any type but strings and objects are most common.
  */
 export default function log(msg) {
-	let testID = test_config.id
+	let testID = config.id
 	let date = new Date
 	window.norman[testID].logs.push({
 		"msg": msg,

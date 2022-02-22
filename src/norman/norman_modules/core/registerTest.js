@@ -1,4 +1,4 @@
-import * as test_config from "../../config.js"
+import config from "../../config.js"
 /**
  * Registers a test in the window.norman object for logging and debugging purposes
  * @param {object} variant An object of various details specific to the variant that has loaded. A common use case is the variant name/id 
@@ -6,15 +6,15 @@ import * as test_config from "../../config.js"
  * @returns {object} Returns the stored test from the window.norman object
  */
 export default function registerTest(variant, extraDetails = {}) {
-	testID = test_config.id
+	testID = config.id
 	for (const property in extraDetails) {
-		test_config[property] = extraDetails[property]
+		config[property] = extraDetails[property]
 	}
 	window.norman = window.norman || []
 	window.norman[testID] = {
 		variant,
 		logs: [],
-		test_config,
+		config,
 	}
 
 	return window.norman[testID]

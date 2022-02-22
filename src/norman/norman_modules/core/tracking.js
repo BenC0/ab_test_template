@@ -1,4 +1,4 @@
-import * as test_config from "../../config.js"
+import config from "../../config.js"
 import log from "../core/log"
 /**
  * Function to push events to dataLayer
@@ -12,18 +12,18 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
 		let eventObject = {
 			'event': 'CRO_Test_Event',
 			'eventAction': `${eventAction}`,
-			'eventLabel': `${test_config.id}-${variant}`,
+			'eventLabel': `${config.id}-${variant}`,
 		}
 
-		if (impressionEvent !== false && test_config.customDimension !== "") {
+		if (impressionEvent !== false && config.customDimension !== "") {
 			eventObject = {
 				'event': 'CRO_Test_Impression',
-				'testID': test_config.id,
-				'dimension': test_config.customDimension,
+				'testID': config.id,
+				'dimension': config.customDimension,
 				'variation': variant,
 			}
 		}
-        log(test_config.id, {
+        log(config.id, {
             "type": "Event pushed to dataLayer",
             eventObject
         })
