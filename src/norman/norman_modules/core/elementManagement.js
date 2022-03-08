@@ -4,7 +4,7 @@
  * @param {boolean} [all=true] true returns all matches, false returns the first match. 
  * @returns {array} Array of Nodes or false if no matches found
  */
-export function get(selector, all = true)  {
+ export function get(selector, all = true)  {
 	let els = []
 	if (all && typeof selector === "string" && selector.replace(/ /g, '') !== "") {
 		els = [...document.querySelectorAll(selector)]
@@ -25,12 +25,11 @@ export function getAll(selector) {
 
 /**
  * Checks if element exists
- * @param {string|Node} target 
+ * @param {string} target CSS Selector for element 
  * @returns {boolean} Returns true if exists, false if not.
  */
 export function exists(target) {
-	target = typeof target === "string" ?  document.querySelector(target) : target
-	return !!target
+	return !!document.querySelector(target)
 }
 
 /**

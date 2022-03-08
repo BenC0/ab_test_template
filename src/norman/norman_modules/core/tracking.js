@@ -1,5 +1,5 @@
 import config from "../../config.js"
-import log from "../core/log"
+import log from "./log.js"
 /**
  * Function to push events to dataLayer
  * @param {string} variant Variation ID/Name
@@ -32,6 +32,16 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
 }
 
 /**
+ * Function for sending a hotjar impression evnet
+ * @param {string} variant Variation ID/Name 
+ */
+export function hotjar_impression_event(variant) {
+	log(`Sending event to Hotjar: ${config.id}-${variant.replace(/ /g, "-")}`)
+	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+	window.hj('event', `${config.id}-${variant.replace(/ /g, "-")}`);
+}
+
+/**
  * Shorthand/alias function for tracking events 
  * @param {string} variant Variation ID/Name
  * @param {string} action Event action to be tracked
@@ -39,4 +49,7 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
  */
 export default function track(variant, action, impression = false) {
     pushToDataLayer(variant, action, impression)
+	if(impression && config.tracking.hotjar.heatmaps) {
+		hotjar_impression_event(variant)
+	}
 }

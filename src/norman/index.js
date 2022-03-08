@@ -27,12 +27,10 @@ export function init(Variant) {
 	})
 	let id = config.id
 	let run = () => {
-		poll(config.conditions, _ => {
-			poll(Variant.conditions, _ => {
-				document.body.classList.add(`${id}_loaded`)
-				Variant.actions()
-			})
-		})
+		poll(Variant.conditions, _ => {
+			document.body.classList.add(`${id}_loaded`)
+			Variant.actions()
+		}, 0.5)
 	}
 	return {
 		id,
@@ -66,3 +64,18 @@ export const norman = {
 }
 
 export default norman 
+
+export {
+	log,
+	poll,
+	track,
+	cookie,
+	config,
+	debounce,
+	isInViewport,
+	registerTest,
+	onMouseLeave,
+	watchForChange,
+	getHighestZIndex,
+	elementManagement,
+}
