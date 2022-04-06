@@ -36,9 +36,9 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
  * @param {string} variant Variation ID/Name 
  */
 export function hotjar_impression_event(variant) {
-	log(`Sending event to Hotjar: ${config.id}-${variant.replace(/ /g, "-")}`)
+	log(`Sending event to Hotjar: ${config.id}-${variant.replace(/ |\./g, "-")}`)
 	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-	window.hj('event', `${config.id}-${variant.replace(/ /g, "-")}`);
+	window.hj('event', `${config.id}-${variant.replace(/ |\./g, "-")}`);
 }
 
 /**
